@@ -39,8 +39,8 @@ class MainApp(MDApp):
     def build(self):
         self.data = {
             'Add Transaction': 'Addtrs'
-
         }
+
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "BlueGray"
         sm.add_widget(HelloScreen(name='helloscreen'))
@@ -159,3 +159,4 @@ class MainApp(MDApp):
         sm.add_widget(AddTransaction(name='addtransaction'))
         sm.current = 'addtransaction'
 MainApp().run()
+
