@@ -38,8 +38,8 @@ Window.size = (700, 600)
 class MainApp(MDApp):
     def build(self):
         self.data = {
-            'Add Transaction': 'Addtrs',
-            "hi": "hello"
+            'Add Transaction': 'Addtrs'
+
         }
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "BlueGray"
@@ -54,20 +54,20 @@ class MainApp(MDApp):
     def continue_to_app(self):
         sm.current='homepage'
     def submit(self,p1,p2,p3,p4,p5,phn1,phn2,phn3,phn4,phn5,des):
-        #if p1 and p2 and p3 and p4 and p5 and phn1 and phn2 and phn3 and phn4 and phn5 and des:
-        self.persons=[p1,p2,p3,p4,p5]
-        self.phones=[phn1,phn2,phn3,phn4,phn5]
-        self.destination=des
-        sm.add_widget(PostLogin(name='postlogin'))
-        sm.current='postlogin'
-        sm.remove_widget(sm.get_screen('homepage'))
-        '''else:
+        if p1 and p2 and p3 and p4 and p5 and phn1 and phn2 and phn3 and phn4 and phn5 and des:
+            self.persons=[p1,p2,p3,p4,p5]
+            self.phones=[phn1,phn2,phn3,phn4,phn5]
+            self.destination=des
+            sm.add_widget(PostLogin(name='postlogin'))
+            sm.current='postlogin'
+            sm.remove_widget(sm.get_screen('homepage'))
+        else:
             Snackbar(
                 text="Fields cannot be blank",
                 snackbar_x="10dp",
                 snackbar_y="10dp",
                 size_hint_x=.95
-            ).open()'''
+            ).open()
     def goback(self):
         sm.current='postlogin'
 
@@ -81,9 +81,9 @@ class MainApp(MDApp):
         self.temp=update
         sm.add_widget(Weather(name='weather'))
         sm.current='weather'
-    def addSubmit(self,amount,purpose,name):
+    def addSubmit(self,amount,purpose):
 
-        row = [name, amount, purpose, self.category, datetime.now().strftime("%D %H:%M")]
+        row = [self.name, amount, purpose, self.category, datetime.now().strftime("%D %H:%M")]
         self.transactionsar.append(row)
         Snackbar(
             text="Transaction added successfully!!",
@@ -110,7 +110,7 @@ class MainApp(MDApp):
 
         c=['Food','Utilities','Travelling','Parties','Others']
         self.cwisespends={"Food":0,"Utilities":0,"Travelling":0,"Parties":0,"Others":0}
-        self.spends={self.persons[0]:0,self.persons[1]:0,self.persons[2]:0,self.persons[3]:0}
+        self.spends={self.persons[0]:0,self.persons[1]:0,self.persons[2]:0,self.persons[3]:0,self.persons[4]:0}
         for i in range(len(self.transactionsar)):
             for j in range(5):
                 if self.transactionsar[i][0]==self.persons[j]:
@@ -153,6 +153,8 @@ class MainApp(MDApp):
     def on_checkbox_active(self,category):
         self.category=category
 
+    def on_person_select(self,personname):
+        self.name=personname
     def plus(self, addtrs):
         sm.add_widget(AddTransaction(name='addtransaction'))
         sm.current = 'addtransaction'
