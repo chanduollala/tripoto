@@ -30,7 +30,702 @@ class AddTransaction(MDScreen):
     pass
 class TCard(MDCard):
     pass
-Builder.load_file("file.kv")
+
+kvstring='''<HelloScreen>:
+
+    Image:
+        source:'logo.png'
+        size_hint_x: 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+    MDRaisedButton:
+        text: "Continue to APP"
+        font_size: 20
+        pos_hint: {"center_x": 0.5, "center_y": 0.15}
+        on_press: app.continue_to_app()
+
+<HomePage>:
+    MDLabel:
+        text: "WELCOME TO TRIPOTO"
+        font_size: 35
+        pos_hint: {"center_x": 0.5, "center_y": 0.95}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDLabel:
+        text: "Enter details of Teammates"
+        font_size: 25
+        pos_hint: {"center_x": 0.5, "center_y": 0.89}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+    MDCard:
+        size_hint: 0.95, 0.8
+        pos_hint: {"center_x": 0.5, "center_y": 0.45}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+    MDTextField:
+        id: phn1
+        hint_text: "Person 1 Phone"
+        size_hint_x: 0.4
+        font_size: 25
+        max_text_length: 10
+        pos_hint: {"center_x": 0.75, "center_y": 0.65}
+        helper_text_mode: "on_error"
+        helper_text: "Enter phone number"
+    MDTextField:
+        id: p1
+        hint_text: "Person 1"
+        size_hint_x: 0.4
+        helper_text_mode: "on_error"
+        helper_text: "Enter a name"
+        font_size: 25
+        pos_hint: {"center_x": 0.25, "center_y": 0.65}
+
+    MDTextField:
+        id: p2
+        hint_text: "Person 2"
+        size_hint_x: 0.4
+        font_size: 25
+        pos_hint: {"center_x": 0.25, "center_y": 0.55}
+        helper_text_mode: "on_error"
+        helper_text: "Enter a name"
+
+    MDTextField:
+        id: phn2
+        hint_text: "Person2 phone"
+        size_hint_x: 0.4
+        font_size: 25
+        pos_hint: {"center_x": 0.75, "center_y": 0.55}
+        max_text_length: 10
+        helper_text_mode: "on_error"
+        helper_text: "enter 10 digit phone number"
+    MDTextField:
+        id: p3
+        hint_text: "Person 3"
+        size_hint_x: 0.4
+        font_size: 25
+        pos_hint: {"center_x": 0.25, "center_y": 0.45}
+        helper_text_mode: "on_error"
+        helper_text: "enter a name"
+
+    MDTextField:
+        id: phn3
+        hint_text: "Person 3 phone"
+        size_hint_x: 0.4
+        font_size: 25
+        pos_hint: {"center_x": 0.75, "center_y": 0.45}
+        max_text_length: 10
+        helper_text_mode: "on_error"
+        helper_text: "enter 10 digit phone number"
+    MDTextField:
+        id: p4
+        hint_text: "Person 4"
+        size_hint_x: 0.4
+        font_size: 25
+        pos_hint: {"center_x": 0.25, "center_y": 0.35}
+        helper_text_mode: "on_error"
+        helper_text: "Enter a name"
+
+    MDTextField:
+        id: phn4
+        hint_text: "Person 4 phone"
+        size_hint_x: 0.4
+        font_size: 25
+        pos_hint: {"center_x": 0.75, "center_y": 0.35}
+        max_text_length: 10
+        helper_text_mode: "on_error"
+        helper_text: "enter 10 digit phone number"
+
+    MDTextField:
+        id: p5
+        hint_text: "Person 5"
+        size_hint_x: 0.4
+        font_size: 25
+        pos_hint: {"center_x": 0.25, "center_y": 0.25}
+        helper_text_mode: "on_error"
+        helper_text: "enter a name"
+    MDTextField:
+        id: phn5
+        hint_text: "Person 5 phone"
+        size_hint_x: 0.4
+        font_size: 25
+        pos_hint: {"center_x": 0.75, "center_y": 0.25}
+        helper_text_mode: "on_error"
+        helper_text: "Enter 10-digit phone number"
+    MDTextField:
+        id: destination
+        hint_text: "Destination"
+        size_hint_x: 0.9
+        font_size: 25
+        pos_hint: {"center_x": 0.5, "center_y": 0.75}
+        required: True
+        helper_text_mode: "on_error"
+        helper_text: "Enter any place"
+
+
+    MDRoundFlatButton:
+        text: "Submit"
+        font_size: 25
+        pos_hint: {"center_x": 0.5, "center_y": 0.12}
+        size_hint_x: 0.7
+        on_press: app.submit(p1.text,p2.text,p3.text,p4.text,p5.text,phn1.text,phn2.text,phn3.text,phn4.text,phn5.text,destination.text)
+<PostLogin>:
+    MDLabel:
+
+        text: "Planning for a Trip this week?"
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.75}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDRoundFlatButton:
+        text: "Check Weather condition at your destination"
+        font_size: 20
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        on_press: app.weather()
+
+
+    MDLabel:
+        text: "Already Registered?"
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.55}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDRoundFlatButton:
+        text: "Know your location"
+        font_size: 20
+        pos_hint: {"center_x": 0.5, "center_y": 0.45}
+
+
+    MDLabel:
+        text: "Trip Started?"
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.35}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDRoundFlatButton:
+        text: "Track expenses"
+        font_size: 20
+        pos_hint: {"center_x": 0.5, "center_y": 0.25}
+        on_press: app.track()
+
+<Weather>:
+    MDLabel:
+
+        text: "The temperature at "+app.destination+" is"
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.75}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+
+
+
+    MDLabel:
+        text: app.temp
+        font_size: 50
+        pos_hint: {"center_x": 0.5, "center_y": 0.55}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+
+
+    MDRoundFlatButton:
+        text: "Go to Home Page"
+        font_size: 20
+        pos_hint: {"center_x": 0.5, "center_y": 0.25}
+        on_press: app.goback()
+
+<Overview>:
+    MDRaisedButton:
+        text: "Overview"
+        font_size: 18
+        md_bg_color: 1, 0, 1, 1
+        text_color: 0, 0, 1, 1
+        pos_hint: {"center_x": 0.25, "center_y": 0.85}
+        size_hint: 0.5,0.075
+        on_press: app.overview()
+        border: 'yellow'
+
+    MDFlatButton:
+        text: "Transactions"
+        font_size: 18
+        pos_hint: {"center_x": 0.75, "center_y": 0.85}
+        on_press: app.transactions()
+        size_hint: 0.5,0.075
+
+
+    MDCard:
+        size_hint: 0.48, 0.32
+        pos_hint: {"center_x": 0.27, "center_y": 0.65}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            text: app.persons[0]
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: app.persons[1]
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: app.persons[2]
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: app.persons[3]
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: app.persons[4]
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+    MDCard:
+        size_hint: 0.48, 0.32
+        pos_hint: {"center_x": 0.73, "center_y": 0.65}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            text: str(app.spends[app.persons[0]])
+            font_size: 15
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+
+        MDLabel:
+            text: str(app.spends[app.persons[1]])
+            font_size: 15
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: str(app.spends[app.persons[2]])
+            font_size: 15
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: str(app.spends[app.persons[3]])
+            font_size: 15
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: str(app.spends[app.persons[4]])
+            font_size: 15
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+
+    MDCard:
+        size_hint: 0.48, 0.4
+        pos_hint: {"center_x": 0.27, "center_y": 0.25}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            text: 'Food'
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: "Utilities"
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: "Travelling"
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: "Parties"
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: "Others"
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+    MDCard:
+        size_hint: 0.48, 0.4
+        pos_hint: {"center_x": 0.73, "center_y": 0.25}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            text: str(app.cwisespends["Food"])
+            font_size: 15
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+
+        MDLabel:
+            text: str(app.cwisespends["Utilities"])
+            font_size: 15
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: str(app.cwisespends["Travelling"])
+            font_size: 15
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: str(app.cwisespends["Parties"])
+            font_size: 15
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+        MDLabel:
+            text: str(app.cwisespends["Others"])
+            font_size: 18
+            halign: left
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: 'center'
+
+    MDFloatingActionButtonSpeedDial:
+        data: app.data
+        rotation_root_button: True
+        callback: app.plus
+
+
+    Widget:
+        size_hint_y: None
+        height: 10
+    MDNavigationLayout:
+
+        ScreenManager:
+
+            MDScreen:
+
+                MDToolbar:
+                    title: "Track Expenses"
+                    elevation: 10
+                    pos_hint: {"top": 1}
+
+                    left_action_items:
+                        [['keyboard-backspace', lambda x: app.goback()]]
+
+
+
+
+<Transactions>:
+    MDRaisedButton:
+        text: "Transactions"
+        font_size: 18
+        md_bg_color: 1, 0, 1, 1
+        text_color: 0, 0, 1, 1
+        pos_hint: {"center_x": 0.75, "center_y": 0.85}
+        size_hint: 0.5,0.075
+        on_press: app.transactions()
+        border: 'yellow'
+
+    MDFlatButton:
+        text: "Overview"
+        font_size: 18
+        pos_hint: {"center_x": 0.25, "center_y": 0.85}
+        on_press: app.track()
+        size_hint: 0.5,0.075
+    ScrollView:
+        id: scroll
+        do_scroll_x: False
+        do_scroll_y: True
+        size_hint: 1,0.80
+        pos_hint: {"center_x": 0.5275, "y": 0}
+
+        MDList:
+
+            id: box
+            spacing: 20
+
+
+    MDFloatingActionButtonSpeedDial:
+        data: app.data
+        rotation_root_button: True
+        callback: app.plus
+
+    Widget:
+        size_hint_y: None
+        height: 10
+    MDNavigationLayout:
+
+        ScreenManager:
+
+            MDScreen:
+
+                MDToolbar:
+                    title: "Track Expenses"
+                    elevation: 10
+                    pos_hint: {"top": 1}
+
+                    left_action_items:
+                        [['keyboard-backspace', lambda x: app.goback()]]
+
+
+
+
+
+<AddTransaction>
+
+    MDCard:
+        size_hint: 0.95, 0.8
+        pos_hint: {"center_x": 0.5, "center_y": 0.45}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+    MDTextField:
+        id: amount
+        hint_text: "Amount"
+        size_hint_x: 0.7
+        required: True
+        helper_text_mode: "on_error"
+        helper_text: "Enter Amount"
+        width: 180
+        font_size: 25
+        pos_hint: {"center_x": 0.50, "center_y": 0.75}
+
+
+    MDTextField:
+        id: purpose
+        hint_text: "Purpose"
+        size_hint_x: 0.7
+        width: 180
+        font_size: 25
+        pos_hint: {"center_x": 0.50, "center_y": 0.65}
+        required: True
+        helper_text_mode: "on_error"
+        helper_text: "Enter purpose"
+
+
+
+    MDLabel:
+        text: "Food"
+        font_size: 20
+        pos_hint: {"center_x": 0.70, "center_y": 0.5}
+        size_hint_x: 0.30
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .8, 'center_y': .5}
+        on_active: app.on_checkbox_active('Food')
+    MDLabel:
+        text: "Utilities"
+        font_size: 20
+        pos_hint: {"center_x": 0.70, "center_y": 0.42}
+        size_hint_x: 0.30
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .8, 'center_y': .42}
+        on_active: app.on_checkbox_active('Utilities')
+    MDLabel:
+        text: "Tranvelling"
+        font_size: 20
+        pos_hint: {"center_x": 0.7, "center_y": 0.35}
+        size_hint_x: 0.3
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .8, 'center_y': .35}
+        on_active: app.on_checkbox_active('Travelling')
+    MDLabel:
+        text: "Parties"
+        font_size: 20
+        pos_hint: {"center_x": 0.7, "center_y": 0.27}
+        size_hint_x: 0.3
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .8, 'center_y': .27}
+        on_active: app.on_checkbox_active('Parties')
+    MDLabel:
+        text: "Others"
+        font_size: 20
+        pos_hint: {"center_x": 0.7, "center_y": 0.20}
+        size_hint_x: 0.3
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .8, 'center_y': .20}
+        on_active: app.on_checkbox_active('Others')
+
+
+    MDLabel:
+        text: app.persons[0]
+        font_size: 20
+        pos_hint: {"center_x": 0.30, "center_y": 0.5}
+        size_hint_x: 0.30
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .45, 'center_y': .5}
+        on_active: app.on_person_select(app.persons[0])
+    MDLabel:
+        text: app.persons[1]
+        font_size: 20
+        pos_hint: {"center_x": 0.30, "center_y": 0.42}
+        size_hint_x: 0.30
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .45, 'center_y': .42}
+        on_active: app.on_person_select(app.persons[1])
+    MDLabel:
+        text: app.persons[2]
+        font_size: 20
+        pos_hint: {"center_x": 0.30, "center_y": 0.35}
+        size_hint_x: 0.3
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .45, 'center_y': .35}
+        on_active: app.on_person_select(app.persons[2])
+    MDLabel:
+        text: app.persons[3]
+        font_size: 20
+        pos_hint: {"center_x": 0.30, "center_y": 0.27}
+        size_hint_x: 0.3
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .45, 'center_y': .27}
+        on_active: app.on_person_select(app.persons[3])
+    MDLabel:
+        text: app.persons[4]
+        font_size: 20
+        pos_hint: {"center_x": 0.30, "center_y": 0.20}
+        size_hint_x: 0.3
+        halign: 'left'
+    MDCheckbox:
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .45, 'center_y': .20}
+        on_active: app.on_person_select(app.persons[4])
+
+
+    MDRaisedButton:
+        text: "Add"
+        font_size: 25
+        pos_hint: {"center_x": 0.5, "center_y": 0.12}
+        size_hint_x: 0.7
+        on_press: app.addSubmit(amount.text,purpose.text)
+    Widget:
+        size_hint_y: None
+        height: 10
+    MDNavigationLayout:
+
+        ScreenManager:
+
+            MDScreen:
+
+                MDToolbar:
+                    title: "Add Transaction"
+                    elevation: 10
+                    pos_hint: {"top": 1}
+
+                    left_action_items:
+                        [['keyboard-backspace', lambda x: app.goback()]]
+
+
+
+
+<TCard>:
+    id: tcard
+    orientation: "vertical"
+    size_hint: 1, None
+    height: box_top.height + box_bottom.height
+    focus_behavior: True
+    ripple_behavior: True
+    pos_hint: {"center_x": .5, "center_y": .5}
+
+    MDBoxLayout:
+        id: box_top
+        spacing: "20dp"
+        adaptive_height: True
+
+
+
+        MDBoxLayout:
+            id: text_box
+            orientation: "vertical"
+            adaptive_height: True
+            spacing: "10dp"
+            padding: 0, "10dp", "10dp", "10dp"
+
+            MDLabel:
+                text: app.money
+                theme_text_color: "Primary"
+                font_style: "H5"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: app.paidby+"    "+app.paymenttime
+                adaptive_height: True
+                theme_text_color: "Primary"
+
+    MDSeparator:
+
+    MDBoxLayout:
+        id: box_bottom
+        adaptive_height: True
+        padding: "10dp", 0, 0, 0
+
+        MDLabel:
+            text: app.purpose
+            adaptive_height: True
+            pos_hint: {"center_y": .5}
+            theme_text_color: "Primary"
+'''
+
+
+Builder.load_string(kvstring)
 sm = ScreenManager()
 Window.size = (700, 600)
 
@@ -81,9 +776,9 @@ class MainApp(MDApp):
         self.temp=update
         sm.add_widget(Weather(name='weather'))
         sm.current='weather'
-    def addSubmit(self,amount,purpose):
 
-        row = [self.name, amount, purpose, self.category, datetime.now().strftime("%D %H:%M")]
+    def addSubmit(self,amount,purpose):
+        row = [self.personname, amount, purpose, self.category, datetime.now().strftime("%D %H:%M")]
         self.transactionsar.append(row)
         Snackbar(
             text="Transaction added successfully!!",
@@ -100,6 +795,7 @@ class MainApp(MDApp):
         sm.add_widget(Transactions(name='transactions'))
         self.track()
         sm.remove_widget(sm.get_screen('addtransaction'))
+
     def track(self):
         try:
             sm.remove_widget(sm.get_screen('overview'))
@@ -154,9 +850,13 @@ class MainApp(MDApp):
         self.category=category
 
     def on_person_select(self,personname):
-        self.name=personname
+        self.personname=personname
     def plus(self, addtrs):
         sm.add_widget(AddTransaction(name='addtransaction'))
         sm.current = 'addtransaction'
+
+
+
+
 MainApp().run()
 
