@@ -189,9 +189,9 @@
 <Weather>:
     MDLabel:
 
-        text: "The temperature at "+app.destination+" is"
+        text: "The weather details at "+app.destination+" is"
         font_size: 18
-        pos_hint: {"center_x": 0.5, "center_y": 0.75}
+        pos_hint: {"center_x": 0.5, "center_y": 0.85}
         halign: 'center'
         size_hint_y: None
         padding_y: 15
@@ -200,19 +200,70 @@
 
 
     MDLabel:
-        text: app.temp
+        text: 'Current Temperature:'+str(app.current_temperature)
         font_size: 50
+        pos_hint: {"center_x": 0.5, "center_y": 0.75}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDLabel:
+
+        text: 'Humidity:'+str(app.humidity)
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+    MDLabel:
+
+        text: 'Minimum Temperature:'+str(app.tempmin)
+
+        font_size: 18
         pos_hint: {"center_x": 0.5, "center_y": 0.55}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDLabel:
+
+        text: 'Maximum Temperature:'+str(app.tempmax)
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.45}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDLabel:
+
+        text: 'Latitude:'+str(app.latitude)
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.35}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDLabel:
+
+        text: 'Longitude:'+str(app.longitude)
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.25}
         halign: 'center'
         size_hint_y: None
         padding_y: 15
 
 
 
+
+
     MDRoundFlatButton:
         text: "Go to Home Page"
         font_size: 20
-        pos_hint: {"center_x": 0.5, "center_y": 0.25}
+        pos_hint: {"center_x": 0.5, "center_y": 0.15}
         on_press: app.goback()
 
 <Overview>:

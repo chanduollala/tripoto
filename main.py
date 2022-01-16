@@ -1,3 +1,5 @@
+import json
+
 import kivy
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -222,9 +224,9 @@ kvstring='''<HelloScreen>:
 <Weather>:
     MDLabel:
 
-        text: "The temperature at "+app.destination+" is"
+        text: "The weather details at "+app.destination+" is"
         font_size: 18
-        pos_hint: {"center_x": 0.5, "center_y": 0.75}
+        pos_hint: {"center_x": 0.5, "center_y": 0.85}
         halign: 'center'
         size_hint_y: None
         padding_y: 15
@@ -233,19 +235,70 @@ kvstring='''<HelloScreen>:
 
 
     MDLabel:
-        text: app.temp
+        text: 'Current Temperature:'+str(app.current_temperature)
         font_size: 50
+        pos_hint: {"center_x": 0.5, "center_y": 0.75}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDLabel:
+
+        text: 'Humidity:'+str(app.humidity)
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+    MDLabel:
+
+        text: 'Minimum Temperature:'+str(app.tempmin)
+
+        font_size: 18
         pos_hint: {"center_x": 0.5, "center_y": 0.55}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDLabel:
+
+        text: 'Maximum Temperature:'+str(app.tempmax)
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.45}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDLabel:
+
+        text: 'Latitude:'+str(app.latitude)
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.35}
+        halign: 'center'
+        size_hint_y: None
+        padding_y: 15
+
+    MDLabel:
+
+        text: 'Longitude:'+str(app.longitude)
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.25}
         halign: 'center'
         size_hint_y: None
         padding_y: 15
 
 
 
+
+
     MDRoundFlatButton:
         text: "Go to Home Page"
         font_size: 20
-        pos_hint: {"center_x": 0.5, "center_y": 0.25}
+        pos_hint: {"center_x": 0.5, "center_y": 0.15}
         on_press: app.goback()
 
 <Overview>:
@@ -767,15 +820,38 @@ class MainApp(MDApp):
         sm.current='postlogin'
 
     def weather(self):
-        search = f"weather in {self.destination}"
+        api_request = requests.get("https://api.openweathermap.org/data/2.5/weather?q="
+                                   + self.destination + "&units=metric&appid=" + 'bb9c06a29f2282c6d4b8606cc12d874c')
+
+        api = json.loads(api_request.content)
+
+        # Temperatures
+        y = api['main']
+        self.current_temperature = y['temp']
+        self.humidity = y['humidity']
+        self.tempmin = y['temp_min']
+        self.tempmax = y['temp_max']
+
+        # Coordinates
+        x = api['coord']
+        self.longitude = x['lon']
+        self.latitude = x['lat']
+
+        # Country
+        z = api['sys']
+        self.country = z['country']
+        self.citi = api['name']
+        '''search = f"weather in {self.destination}"
         url=f"https://www.google.com/search?&q={search}"
         url2=f"https://in.search.yahoo.com/search?p=weather%20in%20hyderabad"
         r=requests.get(url)
         s=BeautifulSoup(r.text,"html.parser")
         update=s.find("div",class_="BNeawe").text
         self.temp=update
+        
+        '''
         sm.add_widget(Weather(name='weather'))
-        sm.current='weather'
+        sm.current = 'weather'
 
     def addSubmit(self,amount,purpose):
         row = [self.personname, amount, purpose, self.category, datetime.now().strftime("%D %H:%M")]
