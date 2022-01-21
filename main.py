@@ -802,20 +802,20 @@ class MainApp(MDApp):
     def continue_to_app(self):
         sm.current='homepage'
     def submit(self,p1,p2,p3,p4,p5,phn1,phn2,phn3,phn4,phn5,des):
-        if p1 and p2 and p3 and p4 and p5 and phn1 and phn2 and phn3 and phn4 and phn5 and des:
-            self.persons=[p1,p2,p3,p4,p5]
-            self.phones=[phn1,phn2,phn3,phn4,phn5]
-            self.destination=des
-            sm.add_widget(PostLogin(name='postlogin'))
-            sm.current='postlogin'
-            sm.remove_widget(sm.get_screen('homepage'))
-        else:
+        #if p1 and p2 and p3 and p4 and p5 and phn1 and phn2 and phn3 and phn4 and phn5 and des:
+        self.persons=[p1,p2,p3,p4,p5]
+        self.phones=[phn1,phn2,phn3,phn4,phn5]
+        self.destination=des
+        sm.add_widget(PostLogin(name='postlogin'))
+        sm.current='postlogin'
+        sm.remove_widget(sm.get_screen('homepage'))
+        '''else:
             Snackbar(
                 text="Fields cannot be blank",
                 snackbar_x="10dp",
                 snackbar_y="10dp",
                 size_hint_x=.95
-            ).open()
+            ).open()'''
     def goback(self):
         sm.current='postlogin'
 
